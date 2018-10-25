@@ -8,6 +8,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoryListComponent } from './categories/category-list/category-list.component';
 import { CategoryAddComponent } from './categories/category-add/category-add.component';
 import { CategoryEditComponent } from './categories/category-edit/category-edit.component';
+import { NavheaderComponent } from './navheader/navheader.component';
 
 const routes: Routes = [
   {
@@ -28,7 +29,8 @@ const routes: Routes = [
     CategoriesComponent,
     CategoryListComponent,
     CategoryAddComponent,
-    CategoryEditComponent
+    CategoryEditComponent,
+    NavheaderComponent
   ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
   providers: [],
