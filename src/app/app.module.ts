@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -10,20 +9,8 @@ import { CategoryAddComponent } from './categories/category-add/category-add.com
 import { CategoryEditComponent } from './categories/category-edit/category-edit.component';
 import { NavheaderComponent } from './navheader/navheader.component';
 import { CategoryDeleteComponent } from './categories/category-delete/category-delete.component';
-
-const routes: Routes = [
-  {
-    path: 'categories',
-    component: CategoriesComponent,
-    children: [
-      { path: 'list', component: CategoryListComponent },
-      { path: 'add', component: CategoryAddComponent },
-      { path: 'edit/:id', component: CategoryEditComponent },
-      { path: 'delete/:id', component: CategoryDeleteComponent }
-    ]
-  },
-  { path: '**', pathMatch: 'full', redirectTo: ' ' }
-];
+import { ItemsComponent } from './items/items.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -33,13 +20,10 @@ const routes: Routes = [
     CategoryAddComponent,
     CategoryEditComponent,
     NavheaderComponent,
-    CategoryDeleteComponent
+    CategoryDeleteComponent,
+    ItemsComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    RouterModule.forRoot(routes, { useHash: true })
-  ],
+  imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })

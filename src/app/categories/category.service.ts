@@ -8,9 +8,12 @@ export class CategoryService {
   categoryList: Category[] = [];
 
   constructor() {
-    this.addCategory(new Category('Cat A'));
-    this.addCategory(new Category('Cat B'));
-    this.addCategory(new Category('Cat C'));
+    this.addCategory(new Category('Fruits'));
+    this.addCategory(new Category('Dairy'));
+    this.addCategory(new Category('Vegetables'));
+    this.addCategory(new Category('Electronics'));
+    this.addCategory(new Category('Bills'));
+    this.addCategory(new Category('Misc'));
   }
 
   getCategories() {
