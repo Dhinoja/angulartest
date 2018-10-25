@@ -9,6 +9,7 @@ import { CategoryListComponent } from './categories/category-list/category-list.
 import { CategoryAddComponent } from './categories/category-add/category-add.component';
 import { CategoryEditComponent } from './categories/category-edit/category-edit.component';
 import { NavheaderComponent } from './navheader/navheader.component';
+import { CategoryDeleteComponent } from './categories/category-delete/category-delete.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
     children: [
       { path: 'list', component: CategoryListComponent },
       { path: 'add', component: CategoryAddComponent },
-      { path: 'edit/:id', component: CategoryEditComponent }
+      { path: 'edit/:id', component: CategoryEditComponent },
+      { path: 'delete/:id', component: CategoryDeleteComponent }
     ]
   },
   { path: '**', pathMatch: 'full', redirectTo: ' ' }
@@ -30,9 +32,14 @@ const routes: Routes = [
     CategoryListComponent,
     CategoryAddComponent,
     CategoryEditComponent,
-    NavheaderComponent
+    NavheaderComponent,
+    CategoryDeleteComponent
   ],
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(routes, { useHash: true })
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

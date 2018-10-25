@@ -16,7 +16,7 @@ export class CategoryEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.editCategoryId = +route.snapshot.params['id'];
+    this.editCategoryId = +this.route.snapshot.params['id'];
   }
 
   ngOnInit() {
@@ -27,8 +27,16 @@ export class CategoryEditComponent implements OnInit {
     this.editCategory = foundCategory;
   }
 
-  onUpdate() {
+  CancelClick() {
+    this.NavigateToList();
+  }
+
+  UpdateClick() {
     this.categoryService.updateCategory(this.editCategoryId, this.editCategory);
+    this.NavigateToList();
+  }
+
+  NavigateToList() {
     this.router.navigate(['../../list'], { relativeTo: this.route });
   }
 }

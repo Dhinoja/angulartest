@@ -1,4 +1,18 @@
-<p>
-  Category Name: <input type="text" [(ngModel)]="editCategory.name" /><br>
-  <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
-</p>
+<div class="row">
+  <form class='form-horizontal'>
+    <div class="form-group">
+      <label class="control-label col-md-2" for="focusedInput">Category Name: </label>
+      <div class="col-md-3">
+        <input class="form-control" name='txtCategoryName' [(ngModel)]="editCategory.name">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class='col-md-5'>
+        <div class="btn-toolbar pull-right">
+          <button type="button" class="btn btn-primary" (click)="UpdateClick()">Update</button>
+          <button type="button" class="btn" (click)="CancelClick()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

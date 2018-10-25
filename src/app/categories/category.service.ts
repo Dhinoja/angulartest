@@ -34,4 +34,11 @@ export class CategoryService {
 
     return foundCategory;
   }
+
+  deleteCategory(categoryId: number) {
+    this.categoryList.splice(
+      this.categoryList.indexOf(this.getCategoryById(categoryId)),
+      1
+    );
+  }
 }

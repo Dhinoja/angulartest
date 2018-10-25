@@ -18,9 +18,16 @@ export class CategoryAddComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSave() {
+  SaveClick() {
     this.categoryService.addCategory(new Category(this.categoryName));
+    this.NavigateToList();
+  }
 
+  CancelClick() {
+    this.NavigateToList();
+  }
+
+  NavigateToList() {
     this.router.navigate(['../list'], { relativeTo: this.route });
   }
 }
