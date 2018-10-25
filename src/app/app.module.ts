@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: 'edit/:id', component: CategoryEditComponent }
     ]
   },
-  { path: '**', pathMatch: 'full', redirectTo: 'routePath' }
+  { path: '**', pathMatch: 'full', redirectTo: ' ' }
 ];
 
 @NgModule({

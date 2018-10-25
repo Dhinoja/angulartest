@@ -22,7 +22,7 @@ export class CategoryService {
   }
 
   updateCategory(categoryId: number, updatedCategory: Category) {
-    var oldCategoryIndex = this.categoryList.findIndex(
+    const oldCategoryIndex = this.categoryList.findIndex(
       c => c.id === categoryId
     );
 

@@ -20,7 +20,7 @@ export class CategoryEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    var foundCategory = this.categoryService.getCategoryById(
+    const foundCategory = this.categoryService.getCategoryById(
       this.editCategoryId
     );
 
@@ -29,6 +29,6 @@ export class CategoryEditComponent implements OnInit {
 
   onUpdate() {
     this.categoryService.updateCategory(this.editCategoryId, this.editCategory);
-    this.router.navigate(['../list'], { relativeTo: this.route });
+    this.router.navigate(['../../list'], { relativeTo: this.route });
   }
 }
