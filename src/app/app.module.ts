@@ -11,6 +11,11 @@ import { NavheaderComponent } from './navheader/navheader.component';
 import { CategoryDeleteComponent } from './categories/category-delete/category-delete.component';
 import { ItemsComponent } from './items/items.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ItemListComponent } from './items/item-list/item-list.component';
+import { ItemAddComponent } from './items/item-add/item-add.component';
+import { ItemEditComponent } from './items/item-edit/item-edit.component';
+import { ItemDeleteComponent } from './items/item-delete/item-delete.component';
+import { RepositoryService } from './repository.service';
 
 @NgModule({
   declarations: [
@@ -21,10 +26,14 @@ import { AppRoutingModule } from './app-routing.module';
     CategoryEditComponent,
     NavheaderComponent,
     CategoryDeleteComponent,
-    ItemsComponent
+    ItemsComponent,
+    ItemListComponent,
+    ItemAddComponent,
+    ItemEditComponent,
+    ItemDeleteComponent
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
-  providers: [],
+  providers: [RepositoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

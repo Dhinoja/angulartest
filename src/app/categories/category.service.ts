@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Category } from './category.model';
+import { RepositoryService } from '../repository.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,17 +8,25 @@ import { Category } from './category.model';
 export class CategoryService {
   categoryList: Category[] = [];
 
-  constructor() {
-    this.addCategory(new Category('Fruits'));
-    this.addCategory(new Category('Dairy'));
-    this.addCategory(new Category('Vegetables'));
-    this.addCategory(new Category('Electronics'));
-    this.addCategory(new Category('Bills'));
-    this.addCategory(new Category('Misc'));
+  constructor(private repositoryService: RepositoryService) {
+    // this.addCategory(new Category('Fruits'));
+    // this.addCategory(new Category('Dairy'));
+    // this.addCategory(new Category('Vegetables'));
+    // this.addCategory(new Category('Electronics'));
+    // this.addCategory(new Category('Bills'));
+    // this.addCategory(new Category('Misc'));
+
+    this.categoryList = this.repositoryService.getCategories();
   }
 
   getCategories() {
     return this.categoryList.slice();
+  }
+
+  getCategoryById(id: number) {
+    const foundCategory = this.categoryList.find(c => c.id === id);
+
+    return foundCategory;
   }
 
   addCategory(category: Category) {
@@ -30,12 +39,6 @@ export class CategoryService {
     );
 
     this.categoryList[oldCategoryIndex] = updatedCategory;
-  }
-
-  getCategoryById(id: number) {
-    const foundCategory = this.categoryList.find(c => c.id === id);
-
-    return foundCategory;
   }
 
   deleteCategory(categoryId: number) {

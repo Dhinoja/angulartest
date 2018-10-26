@@ -9,7 +9,7 @@ import { CategoryService } from '../category.service';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-  categories: Array<Category>;
+  categories: Category[];
 
   constructor(private categoryService: CategoryService) {}
 
