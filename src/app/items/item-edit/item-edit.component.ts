@@ -11,6 +11,7 @@ import { Item } from '../item.model';
 export class ItemEditComponent implements OnInit {
   editItem: Item;
   editItemId = 0;
+  categoriesList = '';
 
   constructor(
     private itemService: ItemService,

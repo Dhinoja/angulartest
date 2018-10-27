@@ -21,7 +21,7 @@ export class ItemService {
   }
 
   getItemById(id: number) {
-    const foundItem = this.itemList.find(c => c.id === id);
+    const foundItem = this.itemList.find(i => i.id === id);
 
     return foundItem;
   }
@@ -31,12 +31,18 @@ export class ItemService {
   }
 
   updateItem(itemId: number, updatedCategory: Item) {
-    const oldItemIndex = this.itemList.findIndex(c => c.id === itemId);
+    const oldItemIndex = this.itemList.findIndex(i => i.id === itemId);
 
     this.itemList[oldItemIndex] = updatedCategory;
   }
 
   deleteItem(itemId: number) {
     this.itemList.splice(this.itemList.indexOf(this.getItemById(itemId)), 1);
+  }
+
+  getItemByName(name: string) {
+    const foundItem = this.itemList.find(i => i.name === name);
+
+    return foundItem;
   }
 }

@@ -1,9 +1,20 @@
+<h3>Edit Item</h3>
 <div class="row">
   <form class='form-horizontal'>
     <div class="form-group">
       <label class="control-label col-md-2">Item Name: </label>
       <div class="col-md-3">
         <input class="form-control" name='txtItemName' [(ngModel)]="editItem.name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-2">Categories: </label>
+      <div class="col-md-3">
+        <table class='table'>
+          <tr *ngFor='let cat of editItem.categories'>
+            <td>{{cat.name}}</td>
+          </tr>
+        </table>
       </div>
     </div>
     <div class="form-group">

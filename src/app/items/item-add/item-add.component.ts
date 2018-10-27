@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ItemService } from '../item.service';
 import { Item } from '../item.model';
+import { Category } from 'src/app/categories/category.model';
 
 @Component({
   selector: 'app-item-add',
@@ -10,6 +11,7 @@ import { Item } from '../item.model';
   styleUrls: ['./item-add.component.css']
 })
 export class ItemAddComponent implements OnInit {
+  categories: Category[] = [];
   itemName: string;
   constructor(
     private itemService: ItemService,

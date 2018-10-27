@@ -7,6 +7,16 @@
       </div>
     </div>
     <div class="form-group">
+      <label class="control-label col-md-2">Categories: </label>
+      <div class="col-md-3">
+        <table class='table'>
+          <tr *ngFor='let cat of categories'>
+            <td>{{cat.name}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="form-group">
       <div class='col-md-5'>
         <div class="btn-toolbar pull-right">
           <button type="button" class="btn btn-primary" (click)="SaveClick()">Save</button>

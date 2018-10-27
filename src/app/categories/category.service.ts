@@ -47,4 +47,10 @@ export class CategoryService {
       1
     );
   }
+
+  getCategoryByName(name: string) {
+    const foundCategory = this.categoryList.find(c => c.name === name);
+
+    return foundCategory;
+  }
 }
