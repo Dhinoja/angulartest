@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CategoryService } from '../category.service';
 import { Category } from '../category.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-category-add',
@@ -9,6 +10,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./category-add.component.css']
 })
 export class CategoryAddComponent implements OnInit {
+  @ViewChild('catForm')
+  catForm: NgForm;
+
   categoryName: string;
   constructor(
     private categoryService: CategoryService,
@@ -18,8 +22,13 @@ export class CategoryAddComponent implements OnInit {
 
   ngOnInit() {}
 
+  submitForm() {
+    if (this.catForm.valid) {
+      this.categoryService.addCategory(this.catForm.value);
+      this.NavigateToList();
+    }
+  }
   SaveClick() {
-    this.categoryService.addCategory(new Category(this.categoryName));
     this.NavigateToList();
   }
 

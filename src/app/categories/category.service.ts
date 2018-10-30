@@ -30,12 +30,16 @@ export class CategoryService {
   }
 
   addCategory(category: Category) {
+    if (category.id === undefined) {
+      category = new Category(category.name);
+    }
+
     this.categoryList.push(category);
   }
 
-  updateCategory(categoryId: number, updatedCategory: Category) {
+  updateCategory(updatedCategory: Category) {
     const oldCategoryIndex = this.categoryList.findIndex(
-      c => c.id === categoryId
+      c => c.id === updatedCategory.id
     );
 
     this.categoryList[oldCategoryIndex] = updatedCategory;

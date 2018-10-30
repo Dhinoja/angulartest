@@ -1,15 +1,16 @@
 <div class="row">
-  <form class='form-horizontal'>
+  <form class='form-horizontal' #catForm="ngForm" (submit)="submitForm()">
     <div class="form-group">
       <label class="control-label col-md-2">Category Name: </label>
       <div class="col-md-3">
-        <input class="form-control" name='txtCategoryName' [(ngModel)]="categoryName">
+        <input class="form-control" name='name' ngModel required #catName="ngModel">
+        <span class="text-danger" *ngIf="!catName.valid && catName.touched">Category name is required.</span>
       </div>
     </div>
     <div class="form-group">
       <div class='col-md-5'>
         <div class="btn-toolbar pull-right">
-          <button type="button" class="btn btn-primary" (click)="SaveClick()">Save</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!catForm.valid">Save</button>
           <button type="button" class="btn" (click)="CancelClick()">Cancel</button>
         </div>
       </div>
