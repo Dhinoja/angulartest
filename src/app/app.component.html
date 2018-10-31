@@ -1,5 +1,23 @@
-<app-navheader></app-navheader>
+<!-- <app-navheader></app-navheader> -->
+<div class="basic-container">
+  <div class="container">
 
-<div class='container'>
-  <router-outlet></router-outlet>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="mainSideMenu.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>My Application</span>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #mainSideMenu mode="side">
+        <mat-nav-list>Category</mat-nav-list>
+        <mat-nav-list>Items</mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <p> olleh </p>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
 </div>

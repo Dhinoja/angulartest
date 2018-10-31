@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../category.model';
 import { CategoryService } from '../category.service';
 import { NgForm } from '@angular/forms';
+import { ItemService } from 'src/app/items/item.service';
+import { Item } from 'src/app/items/item.model';
 
 @Component({
   selector: 'app-category-edit',
@@ -15,8 +17,20 @@ export class CategoryEditComponent implements OnInit {
 
   editCategory: Category;
   editCategoryId = 0;
+
+  itemsList: Item[];
+  //  = [
+  //   'Extra cheese',
+  //   'Mushroom',
+  //   'Onion',
+  //   'Pepperoni',
+  //   'Sausage',
+  //   'Tomato'
+  // ];
+
   constructor(
     private categoryService: CategoryService,
+    private itemService: ItemService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -27,6 +41,8 @@ export class CategoryEditComponent implements OnInit {
     const foundCategory = this.categoryService.getCategoryById(
       this.editCategoryId
     );
+
+    this.itemsList = this.itemService.getItems();
 
     setTimeout(() => {
       this.catForm.form.patchValue(foundCategory);
@@ -41,8 +57,6 @@ export class CategoryEditComponent implements OnInit {
       this.NavigateToList();
     }
   }
-
-  UpdateClick() {}
 
   CancelClick() {
     this.NavigateToList();

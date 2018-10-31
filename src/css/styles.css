@@ -1,4 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 input.ng-touched.ng-invalid {
-    border:1px solid red;
+  border: 1px solid red;
+}
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+body {
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
 }

@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -16,6 +16,7 @@ import { ItemAddComponent } from './items/item-add/item-add.component';
 import { ItemEditComponent } from './items/item-edit/item-edit.component';
 import { ItemDeleteComponent } from './items/item-delete/item-delete.component';
 import { RepositoryService } from './repository.service';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { RepositoryService } from './repository.service';
     ItemEditComponent,
     ItemDeleteComponent
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule],
+  imports: [BrowserModule, FormsModule, AppRoutingModule, MaterialModule],
   providers: [RepositoryService],
   bootstrap: [AppComponent]
 })
