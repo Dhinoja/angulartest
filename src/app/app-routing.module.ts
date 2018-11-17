@@ -17,6 +17,7 @@ const appRoutes: Routes = [
     path: 'categories',
     component: CategoriesComponent,
     children: [
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: CategoryListComponent },
       { path: 'add', component: CategoryAddComponent },
       { path: 'edit/:id', component: CategoryEditComponent },

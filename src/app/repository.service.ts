@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Item } from './items/item.model';
 import { Category } from './categories/category.model';
-import { registerContentQuery } from '@angular/core/src/render3/instructions';
 
 @Injectable({
   providedIn: 'root'

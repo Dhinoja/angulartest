@@ -6,16 +6,16 @@
       <button mat-icon-button (click)="mainSideMenu.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>My Application</span>
+      <span routerLink="/" style="cursor: pointer;">My Application</span>
     </mat-toolbar>
 
     <mat-sidenav-container class="sidenav-container">
-      <mat-sidenav #mainSideMenu mode="side">
-        <mat-nav-list>Category</mat-nav-list>
-        <mat-nav-list>Items</mat-nav-list>
+      <mat-sidenav #mainSideMenu mode="over">
+        <mat-nav-list>
+          <a mat-list-item routerLink="/categories" (click)="mainSideMenu.close()">First Page</a>
+        </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-        <p> olleh </p>
         <router-outlet></router-outlet>
       </mat-sidenav-content>
     </mat-sidenav-container>

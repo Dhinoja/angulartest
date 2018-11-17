@@ -51,10 +51,11 @@ export class CategoryEditComponent implements OnInit {
     this.editCategory = foundCategory;
   }
 
-  submitForm() {
+  UpdateClick() {
     if (this.catForm.valid) {
-      this.categoryService.updateCategory(this.catForm.value);
-      this.NavigateToList();
+      console.log(this.catForm.value);
+      // this.categoryService.updateCategory(this.catForm.value);
+      // this.NavigateToList();
     }
   }
 
