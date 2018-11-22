@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ItemService } from '../item.service';
-import { Item } from '../item.model';
-import { Category } from 'src/app/categories/category.model';
+import { Category, Item } from 'src/app/models/models.model';
 
 @Component({
   selector: 'app-item-add',

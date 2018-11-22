@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Item } from './item.model';
 import { RepositoryService } from '../repository.service';
+import { Item } from '../models/models.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class ItemService {
   }
 
   getItemById(id: number) {
-    const foundItem = this.itemList.find(i => i.id === id);
+    const foundItem = this.itemList.find(i => i.itemId === id);
 
     return foundItem;
   }
@@ -31,7 +31,7 @@ export class ItemService {
   }
 
   updateItem(itemId: number, updatedCategory: Item) {
-    const oldItemIndex = this.itemList.findIndex(i => i.id === itemId);
+    const oldItemIndex = this.itemList.findIndex(i => i.itemId === itemId);
 
     this.itemList[oldItemIndex] = updatedCategory;
   }

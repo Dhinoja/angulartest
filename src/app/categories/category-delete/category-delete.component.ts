@@ -13,11 +13,11 @@ export class CategoryDeleteComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const categoryId = +this.route.snapshot.params['id'];
+    const categoryId = this.route.snapshot.params['id'];
 
-    this.categoryService.deleteCategory(categoryId);
-
-    this.NavigateToList();
+    this.categoryService.deleteCategory(categoryId).subscribe(response => {
+      this.NavigateToList();
+    });
   }
 
   NavigateToList() {

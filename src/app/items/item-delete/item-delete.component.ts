@@ -13,7 +13,7 @@ export class ItemDeleteComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const itemId = +this.route.snapshot.params['id'];
+    const itemId = this.route.snapshot.params['id'];
 
     this.itemService.deleteItem(itemId);
 

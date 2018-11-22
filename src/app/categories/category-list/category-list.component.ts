@@ -1,8 +1,9 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { Category } from '../category.model';
-import { CategoryService } from '../category.service';
+import { CategoryService } from 'src/app/categories/category.service';
+import { Category } from 'src/app/models/models.model';
+import { MatTable } from '@angular/material';
 
 @Component({
   selector: 'app-category-list',
@@ -12,7 +13,10 @@ import { CategoryService } from '../category.service';
 export class CategoryListComponent implements OnInit {
   categories: Category[];
 
-  tableColumns = ['Name', 'Items', 'Options'];
+  tableColumns = ['name', 'items', 'options'];
+
+  @ViewChild('catListTable')
+  catListTable: MatTable<Category>;
 
   constructor(
     private categoryService: CategoryService,
@@ -21,7 +25,11 @@ export class CategoryListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.categories = this.categoryService.getCategories();
+    this.categoryService.getCategories().subscribe(categoryList => {
+      this.categories = categoryList;
+      this.catListTable.dataSource = this.categories;
+      this.catListTable.renderRows();
+    });
   }
 
   getItemsString(category: Category) {
@@ -29,7 +37,14 @@ export class CategoryListComponent implements OnInit {
   }
 
   EditClick(categoryId: number) {
-    this.router.navigate(['../edit', categoryId], { relativeTo: this.route });
-    console.log(categoryId);
+    this.router.navigate(['../edit', categoryId.toString()], {
+      relativeTo: this.route
+    });
+  }
+
+  DeleteClick(categoryId: number) {
+    this.router.navigate(['../delete', categoryId.toString()], {
+      relativeTo: this.route
+    });
   }
 }

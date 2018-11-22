@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../item.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Item } from '../item.model';
+import { Item } from 'src/app/models/models.model';
 
 @Component({
   selector: 'app-item-edit',
@@ -10,7 +10,7 @@ import { Item } from '../item.model';
 })
 export class ItemEditComponent implements OnInit {
   editItem: Item;
-  editItemId = 0;
+  editItemId;
   categoriesList = '';
 
   constructor(
@@ -18,7 +18,7 @@ export class ItemEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.editItemId = +this.route.snapshot.params['id'];
+    this.editItemId = this.route.snapshot.params['id'];
   }
 
   ngOnInit() {

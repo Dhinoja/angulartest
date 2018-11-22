@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CategoryService } from '../category.service';
-import { Category } from '../category.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -28,8 +27,11 @@ export class CategoryAddComponent implements OnInit {
       this.NavigateToList();
     }
   }
+
   SaveClick() {
-    this.NavigateToList();
+    this.categoryService.addCategory(this.catForm.value).subscribe(response => {
+      this.NavigateToList();
+    });
   }
 
   CancelClick() {

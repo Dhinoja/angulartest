@@ -17,6 +17,8 @@ import { ItemEditComponent } from './items/item-edit/item-edit.component';
 import { ItemDeleteComponent } from './items/item-delete/item-delete.component';
 import { RepositoryService } from './repository.service';
 import { MaterialModule } from './material.module';
+import { ToCsvPipe } from './pipes/ToCsv.pipe';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,16 @@ import { MaterialModule } from './material.module';
     ItemListComponent,
     ItemAddComponent,
     ItemEditComponent,
-    ItemDeleteComponent
+    ItemDeleteComponent,
+    ToCsvPipe
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule, MaterialModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    MaterialModule,
+    HttpModule
+  ],
   providers: [RepositoryService],
   bootstrap: [AppComponent]
 })
