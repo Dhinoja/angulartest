@@ -6,21 +6,13 @@
         <mat-icon>menu</mat-icon>
       </button>
       <span routerLink="/" style="cursor: pointer;">{{ title }}</span>
-      <button mat-button (click)="saveAll()">Save</button>
     </mat-toolbar>
 
     <mat-sidenav-container class="sidenav-container">
       <mat-sidenav #mainSideMenu mode="over">
         <mat-nav-list>
-          <a
-            mat-list-item
-            routerLink="/categories"
-            (click)="mainSideMenu.close()"
-            >Categories</a
-          >
-          <a mat-list-item routerLink="/items" (click)="mainSideMenu.close()"
-            >Items</a
-          >
+          <a mat-list-item routerLink="/category" (click)="mainSideMenu.close()">Categories</a>
+          <a mat-list-item routerLink="/item" (click)="mainSideMenu.close()">Items</a>
           <a mat-list-item (click)="mainSideMenu.close()">Save Data</a>
           <a mat-list-item (click)="mainSideMenu.close()">Fetch Data</a>
         </mat-nav-list>

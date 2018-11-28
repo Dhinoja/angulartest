@@ -1,0 +1,15 @@
+<h3>Edit Item</h3>
+
+<form #itemForm="ngForm">
+  <input type="hidden" name="itemId" ngModel>
+  <mat-form-field>
+    <input matInput placeholder="Item Name" name='name' ngModel required #itemName="ngModel">
+    <mat-error class="text-danger" *ngIf="!itemName.valid && itemName.touched">
+      Item name is required.
+    </mat-error>
+  </mat-form-field>
+  <div>
+    <a mat-raised-button (click)="UpdateClick()">Update</a> &nbsp;
+    <a mat-raised-button (click)="CancelClick()">Cancel</a>
+  </div>
+</form>
