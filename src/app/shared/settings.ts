@@ -1,11 +1,18 @@
 export class AppSettings {
-    private static SettingsData = {
-        Database: {
-            Url: "http://localhost:49034/api/",
-        },
-    };
+  private constructor() {}
 
-    public static get Settings() {
-        return this.SettingsData;
+  // private static ApiRootUrl = 'http://localhost:49034/api/';
+  private static ApiRootUrl = 'http://localhost:49033/api/';
+  private static SettingsData = {
+    Api: {
+      RootUrl: AppSettings.ApiRootUrl,
+      CategoriesApiUrl: AppSettings.ApiRootUrl + 'categories',
+      ItemsApiUrl: AppSettings.ApiRootUrl + 'items',
+      ItemCategoriesApiUrl: AppSettings.ApiRootUrl + 'itemcategories'
     }
+  };
+
+  public static get Settings() {
+    return this.SettingsData;
+  }
 }

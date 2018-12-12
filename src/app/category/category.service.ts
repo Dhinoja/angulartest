@@ -1,30 +1,45 @@
 import { Injectable } from '@angular/core';
-import { RepositoryService } from '../repository.service';
 import { Category } from '../models/models.model';
+import { Http, Response } from '@angular/http';
+import { AppSettings } from '../shared/settings';
 
 @Injectable()
 export class CategoryService {
-  categoryList: Category[] = [];
+  private categoriesApiUrl = AppSettings.Settings.Api.CategoriesApiUrl;
 
-  constructor(private repositoryService: RepositoryService) {}
+  constructor(private http: Http) {}
 
   getCategories() {
-    return this.repositoryService.getCategories();
+    return this.http.get(this.categoriesApiUrl).map((response: Response) => {
+      const data: Category[] = response.json();
+      return data;
+    });
   }
 
-  getCategoryById(id: number) {
-    return this.repositoryService.getCategoryById(id);
+  getCategoryById(categoryId: number) {
+    return this.http
+      .get(this.categoriesApiUrl + '/' + categoryId)
+      .map((response: Response) => {
+        const data: Category = response.json();
+        return data;
+      });
   }
 
   addCategory(category: Category) {
-    return this.repositoryService.insertCategory(category);
+    return this.http.post(this.categoriesApiUrl, category);
   }
 
   updateCategory(updatedCategory: Category) {
-    return this.repositoryService.updateCategory(updatedCategory);
+    console.log(updatedCategory);
+    return this.http.put(
+      this.categoriesApiUrl + '/' + updatedCategory.categoryId,
+      updatedCategory
+    );
   }
 
   deleteCategory(categoryId: number) {
-    return this.repositoryService.deleteCategory(categoryId);
+    return this.http.delete(this.categoriesApiUrl + '/' + categoryId);
   }
+
+  getItems(categoryId: number) {}
 }

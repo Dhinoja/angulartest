@@ -1,7 +1,7 @@
 <h4>Edit Category</h4>
 
 <form #catForm="ngForm">
-  <input type="hidden" name="categoryId" ngModel />
+  <input type="hidden" name="categoryId" ngModel #catId="ngModel" />
   <mat-form-field>
     <input
       matInput
@@ -11,25 +11,31 @@
       required
       #catName="ngModel"
     />
-    <mat-error *ngIf="!catName.valid && catName.touched"
-      >Category name is required.</mat-error
-    >
+    <mat-error *ngIf="!catName.valid && catName.touched">
+      Category name is required.
+    </mat-error>
   </mat-form-field>
   <br />
+
   <mat-form-field>
-    <mat-select placeholder="Items" name="items" ngModel multiple>
-      <mat-option *ngFor="let item of itemsList" [value]="item.itemId">{{
-        item.name
-      }}</mat-option>
+    <mat-select placeholder="Items" name="itemIds" ngModel multiple>
+      <mat-option
+        *ngFor="let item of (itemsListObservable | async)"
+        [value]="item.itemId"
+      >
+        {{ item.name }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
+
   <div>
     <a
       mat-raised-button
       [disabled]="!catForm.valid && catForm.touched"
       (click)="UpdateClick()"
     >
-      Update </a
-    >&nbsp; <a mat-raised-button (click)="CancelClick()">Cancel</a>
+      Update
+    </a>
+    &nbsp; <a mat-raised-button (click)="CancelClick()"> Cancel </a>
   </div>
 </form>

@@ -7,14 +7,23 @@ import { ItemEditComponent } from './item-edit/item-edit.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { ItemService } from './item.service';
 
 @NgModule({
-  imports: [CommonModule, ItemRoutingModule, SharedModule, FormsModule],
+  imports: [
+    CommonModule,
+    ItemRoutingModule,
+    SharedModule,
+    FormsModule,
+    HttpModule
+  ],
   declarations: [
     ItemComponent,
     ItemListComponent,
     ItemAddComponent,
     ItemEditComponent
-  ]
+  ],
+  providers: [ItemService]
 })
-export class ItemModule { }
+export class ItemModule {}

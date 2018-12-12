@@ -7,6 +7,9 @@ import { CategoryRoutingModule } from './category-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { CategoryService } from './category.service';
+import { ItemService } from '../item/item.service';
 
 @NgModule({
   declarations: [
@@ -15,6 +18,13 @@ import { FormsModule } from '@angular/forms';
     CategoryAddComponent,
     CategoryEditComponent
   ],
-  imports: [CategoryRoutingModule, SharedModule, CommonModule, FormsModule],
+  imports: [
+    HttpModule,
+    CategoryRoutingModule,
+    SharedModule,
+    CommonModule,
+    FormsModule
+  ],
+  providers: [CategoryService, ItemService]
 })
-export class CategoryModule { }
+export class CategoryModule {}

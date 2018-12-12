@@ -2,14 +2,21 @@
 
 <form #itemForm="ngForm">
   <mat-form-field>
-    <input matInput placeholder="Item Name" name='name' ngModel required #itemName="ngModel" />
+    <input
+      matInput
+      placeholder="Item Name"
+      name="name"
+      ngModel
+      required
+      #itemName="ngModel"
+    />
     <mat-error class="text-danger" *ngIf="!itemName.valid && itemName.touched">
       Item name is required.
     </mat-error>
-
   </mat-form-field>
   <div>
-    <a mat-raised-button [disabled]="!itemForm.valid" (click)="SaveClick()">Save</a>&nbsp;
-    <a mat-raised-button (click)="CancelClick()">Cancel</a>
+    <a mat-raised-button [disabled]="!itemForm.valid" (click)="SaveClick()"
+      >Save</a
+    >&nbsp; <a mat-raised-button (click)="CancelClick()">Cancel</a>
   </div>
 </form>

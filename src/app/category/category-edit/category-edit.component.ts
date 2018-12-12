@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../category.service';
 import { NgForm } from '@angular/forms';
+import { Category } from 'src/app/models/models.model';
 import { ItemService } from 'src/app/item/item.service';
-import { Category, Item } from 'src/app/models/models.model';
+import { MatInput } from '@angular/material';
 
 @Component({
   selector: 'app-category-edit',
@@ -12,10 +13,12 @@ import { Category, Item } from 'src/app/models/models.model';
 })
 export class CategoryEditComponent implements OnInit {
   @ViewChild('catForm') catForm: NgForm;
+  @ViewChild('catName') catName: MatInput;
+  @ViewChild('catId') catId: HTMLInputElement;
 
   editCategory: Category;
   editCategoryId: number;
-  itemsList: Item[];
+  itemsListObservable: any;
 
   constructor(
     private categoryService: CategoryService,
@@ -29,18 +32,36 @@ export class CategoryEditComponent implements OnInit {
   ngOnInit() {
     this.categoryService
       .getCategoryById(this.editCategoryId)
-      .subscribe(response => this.catForm.form.patchValue(response));
+      .subscribe(response => {
+        this.catForm.form.patchValue(response);
+        this.catForm.form.patchValue({
+          itemIds: response.itemCategories.map(ic => ic.itemId)
+        });
+      });
 
-    this.itemService
-      .getItems()
-      .subscribe(response => (this.itemsList = response));
+    this.itemsListObservable = this.itemService.getItems();
   }
 
   UpdateClick() {
     if (this.catForm.valid) {
       console.log(this.catForm.value);
+
+      console.log(
+        this.catForm.value.itemIds.map(i => {
+          return { itemId: i, categoryId: this.catId.value };
+        })
+      );
+
+      const tempCategory: Category = {
+        categoryId: +this.catId.value,
+        name: this.catName.value,
+        itemCategories: this.catForm.value.itemIds.map(i => {
+          return { itemId: i, categoryId: this.catId.value };
+        })
+      };
+
       this.categoryService
-        .updateCategory(this.catForm.value)
+        .updateCategory(tempCategory)
         .subscribe(response => this.NavigateToList());
     }
   }

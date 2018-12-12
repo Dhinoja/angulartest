@@ -1,29 +1,42 @@
 import { Injectable } from '@angular/core';
-import { RepositoryService } from '../repository.service';
 import { Item } from '../models/models.model';
+import { Http, Response } from '@angular/http';
+import { AppSettings } from '../shared/settings';
+import 'rxjs/Rx';
 
 @Injectable()
 export class ItemService {
-  itemList: Item[] = [];
-  constructor(private repositoryService: RepositoryService) {}
+  private itemsApiUrl = AppSettings.Settings.Api.ItemsApiUrl;
+  constructor(private http: Http) {}
 
   getItems() {
-    return this.repositoryService.getItems();
+    return this.http.get(this.itemsApiUrl).map((response: Response) => {
+      const data: Item[] = response.json();
+      return data;
+    });
   }
 
   getItemById(itemId: number) {
-    return this.repositoryService.getItemByItemId(itemId);
+    return this.http
+      .get(this.itemsApiUrl + '/' + itemId)
+      .map((response: Response) => {
+        const data: Item = response.json();
+        return data;
+      });
   }
 
   addItem(item: Item) {
-    return this.repositoryService.insertItem(item);
+    return this.http.post(this.itemsApiUrl, item);
   }
 
   updateItem(updatedItem: Item) {
-    return this.repositoryService.updateItem(updatedItem);
+    return this.http.put(
+      this.itemsApiUrl + '/' + updatedItem.itemId,
+      updatedItem
+    );
   }
 
   deleteItem(itemId: number) {
-    return this.repositoryService.deleteItem(itemId);
+    return this.http.delete(this.itemsApiUrl + '/' + itemId);
   }
 }

@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material';
+import 'rxjs/Rx';
 
 import { CategoryService } from 'src/app/category/category.service';
 import { Category } from 'src/app/models/models.model';
@@ -22,7 +23,7 @@ export class CategoryListComponent implements OnInit {
     private categoryService: CategoryService,
     public router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.refreshTable();
@@ -37,7 +38,10 @@ export class CategoryListComponent implements OnInit {
   }
 
   getItemsString(category: Category) {
-    return category.items.map(i => i.name).join(', ');
+    if (category.itemCategories.length > 0) {
+      return category.itemCategories.map(ic => ic.item.name).join(', ');
+    }
+    return '';
   }
 
   EditClick(categoryId: number) {
@@ -47,6 +51,8 @@ export class CategoryListComponent implements OnInit {
   }
 
   DeleteClick(categoryId: number) {
-    this.categoryService.deleteCategory(categoryId).subscribe(response => this.refreshTable());
+    this.categoryService
+      .deleteCategory(categoryId)
+      .subscribe(response => this.refreshTable());
   }
 }

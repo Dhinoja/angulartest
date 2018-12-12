@@ -5,7 +5,7 @@ import { PipeTransform, Pipe } from '@angular/core';
 })
 export class ToCsvPipe implements PipeTransform {
   transform(objArray: any[], column: string) {
-    if (objArray) {
+    if (objArray.length > 0) {
       return objArray.map(o => o[column]).join(', ');
     }
     return '-';
