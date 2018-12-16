@@ -30,7 +30,7 @@ export class CategoryService {
   }
 
   updateCategory(updatedCategory: Category) {
-    console.log(updatedCategory);
+  
     return this.http.put(
       this.categoriesApiUrl + '/' + updatedCategory.categoryId,
       updatedCategory

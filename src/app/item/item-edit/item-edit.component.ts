@@ -1,38 +1,42 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ItemService } from '../item.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Item, Category } from 'src/app/models/models.model';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ItemService } from "../item.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Item, Category } from "src/app/models/models.model";
+import { NgForm } from "@angular/forms";
+import { CategoryService } from "src/app/category/category.service";
 
 @Component({
-  selector: 'app-item-edit',
-  templateUrl: './item-edit.component.html',
-  styleUrls: ['./item-edit.component.css']
+  selector: "app-item-edit",
+  templateUrl: "./item-edit.component.html",
+  styleUrls: ["./item-edit.component.css"]
 })
 export class ItemEditComponent implements OnInit {
-  @ViewChild('itemForm') itemForm: NgForm;
+  @ViewChild("itemForm") itemForm: NgForm;
 
   editItem: Item;
   editItemId: number;
   categoriesList: Category[];
+  categoriesListObservable: any;
 
   constructor(
     private itemService: ItemService,
+    private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.editItemId = +this.route.snapshot.params['id'];
+    this.editItemId = +this.route.snapshot.params["id"];
   }
 
   ngOnInit() {
     this.itemService
       .getItemById(this.editItemId)
       .subscribe(response => this.itemForm.form.patchValue(response));
+
+    this.categoriesListObservable = this.categoryService.getCategories();
   }
 
   UpdateClick() {
     if (this.itemForm.valid) {
-      console.log(this.itemForm.value);
       this.itemService
         .updateItem(this.itemForm.value)
         .subscribe(response => this.NavigateToList());
@@ -44,6 +48,6 @@ export class ItemEditComponent implements OnInit {
   }
 
   NavigateToList() {
-    this.router.navigate(['../../list'], { relativeTo: this.route });
+    this.router.navigate(["../../list"], { relativeTo: this.route });
   }
 }

@@ -14,10 +14,22 @@
       Category name is required.
     </mat-error>
   </mat-form-field>
+  <br />
+  <mat-form-field>
+    <mat-select placeholder="Items" name="itemIds" ngModel multiple>
+      <mat-option
+        *ngFor="let item of (itemsListObservable | async)"
+        [value]="item.itemId"
+      >
+        {{ item.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <div>
     <a mat-raised-button [disabled]="!catForm.valid" (click)="SaveClick()">
       Save
     </a>
-    &nbsp; <a mat-raised-button (click)="CancelClick()">Cancel</a>
+    &nbsp;
+    <a mat-raised-button (click)="CancelClick()">Cancel</a>
   </div>
 </form>

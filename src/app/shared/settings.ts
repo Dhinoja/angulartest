@@ -2,7 +2,7 @@ export class AppSettings {
   private constructor() {}
 
   // private static ApiRootUrl = 'http://localhost:49034/api/';
-  private static ApiRootUrl = 'http://localhost:49033/api/';
+  private static ApiRootUrl = 'http://localhost:49034/api/';
   private static SettingsData = {
     Api: {
       RootUrl: AppSettings.ApiRootUrl,

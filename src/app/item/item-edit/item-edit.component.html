@@ -15,8 +15,26 @@
       Item name is required.
     </mat-error>
   </mat-form-field>
+  <br />
+  <mat-form-field>
+    <mat-select placeholder="Categories" name="categoryIds" ngModel multiple>
+      <mat-option
+        *ngFor="let category of (categoriesListObservable | async)"
+        [value]="category.categoryId"
+      >
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <div>
-    <a mat-raised-button (click)="UpdateClick()">Update</a> &nbsp;
+    <a
+      mat-raised-button
+      [disabled]="!itemForm.valid && itemForm.touched"
+      (click)="UpdateClick()"
+    >
+      Update
+    </a>
+    &nbsp;
     <a mat-raised-button (click)="CancelClick()">Cancel</a>
   </div>
 </form>

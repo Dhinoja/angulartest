@@ -10,7 +10,9 @@
 
   <ng-container matColumnDef="items">
     <th mat-header-cell *matHeaderCellDef>Items</th>
-    <td mat-cell *matCellDef="let category">{{ getItemsString(category) }}</td>
+    <td mat-cell *matCellDef="let category">
+      {{ category.itemCategories | tocsv: ["item", "name"] }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="options" stickyEnd>
