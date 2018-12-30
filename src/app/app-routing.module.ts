@@ -1,24 +1,27 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes, PreloadAllModules } from "@angular/router";
 
-import { HomeComponent } from './core/home/home.component';
+import { HomeComponent } from "./core/home/home.component";
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: "", component: HomeComponent },
   {
-    path: 'category',
-    loadChildren: './category/category.module#CategoryModule'
+    path: "category",
+    loadChildren: "./category/category.module#CategoryModule"
   },
   {
-    path: 'item',
-    loadChildren: './item/item.module#ItemModule'
+    path: "item",
+    loadChildren: "./item/item.module#ItemModule"
   },
-  { path: '**', pathMatch: 'full', redirectTo: ' ' }
+  { path: "**", pathMatch: "full", redirectTo: " " }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(appRoutes, {
+      preloadingStrategy: PreloadAllModules,
+      useHash: true
+    })
   ],
   exports: [RouterModule]
 })
