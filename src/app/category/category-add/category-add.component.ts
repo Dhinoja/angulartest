@@ -5,7 +5,8 @@ import { NgForm } from "@angular/forms";
 import { CategoryService } from "../category.service";
 import { ItemService } from "src/app/item/item.service";
 import { MatInput } from "@angular/material";
-import { Category } from "src/app/models/models.model";
+import { Category, Item } from "src/app/models/models.model";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-category-add",
@@ -16,7 +17,7 @@ export class CategoryAddComponent implements OnInit {
   @ViewChild("catForm") catForm: NgForm;
   @ViewChild("catName") catName: MatInput;
 
-  itemsListObservable: any;
+  itemsListObservable: Observable<Item[]>;
 
   constructor(
     private categoryService: CategoryService,
@@ -34,10 +35,14 @@ export class CategoryAddComponent implements OnInit {
       const newCategory: Category = {
         categoryId: 0,
         name: this.catName.value,
-        itemCategories: this.catForm.value.itemIds.map(i => {
-          return { itemId: i, categoryId: 0 };
-        })
+        itemCategories: []
       };
+
+      if (this.catForm.value.itemIds.length > 0) {
+        newCategory.itemCategories = this.catForm.value.itemIds.map(i => {
+          return { itemId: i, categoryId: 0 };
+        });
+      }
 
       this.categoryService.addCategory(newCategory).subscribe(response => {
         this.NavigateToList();

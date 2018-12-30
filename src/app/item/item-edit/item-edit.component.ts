@@ -28,9 +28,13 @@ export class ItemEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.itemService
-      .getItemById(this.editItemId)
-      .subscribe(response => this.itemForm.form.patchValue(response));
+    this.itemService.getItemById(this.editItemId).subscribe(response => {
+      console.log(response);
+      this.itemForm.form.patchValue(response);
+      // this.itemForm.form.patchValue({
+      //   categoryIds: response.categoryIds.map(ic => ic.categoryId)
+      // });
+    });
 
     this.categoriesListObservable = this.categoryService.getCategories();
   }
