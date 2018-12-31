@@ -6,7 +6,7 @@
 echo Handling node.js deployment.
 
 :: 1. Select node version
-call :SelectNodeVersion
+:: call :SelectNodeVersion
 
 :: 2. Install NPM package (Including dependency packages)
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
