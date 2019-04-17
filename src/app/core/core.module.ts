@@ -1,12 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NavheaderComponent } from './navheader/navheader.component';
-import { HomeComponent } from './home/home.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { HomeComponent } from "./home/home.component";
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: [HomeComponent, NavheaderComponent]
+  imports: [CommonModule],
+  declarations: [HomeComponent]
 })
-export class CoreModule { }
+export class CoreModule {}

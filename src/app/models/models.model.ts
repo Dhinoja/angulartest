@@ -17,3 +17,9 @@ export class ItemCategories {
   public categoryId: number;
   public category: Category;
 }
+
+export class Expense {
+  public expenseId: number;
+  public categoryId: number;
+  public expenseName: string;
+}

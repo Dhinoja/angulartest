@@ -1,31 +1,56 @@
-<!-- <app-navheader></app-navheader> -->
 <div class="basic-container">
   <div class="container">
-    <mat-toolbar color="primary">
-      <button mat-icon-button (click)="mainSideMenu.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span routerLink="/" style="cursor: pointer;">{{ title }}</span>
-    </mat-toolbar>
-
     <mat-sidenav-container class="sidenav-container">
-      <mat-sidenav #mainSideMenu mode="over">
+      <mat-sidenav #mainSideMenu mode="side" opened>
         <mat-nav-list>
+          <mat-card *ngIf="authService.isAuthenticated()">
+            <mat-card-header>
+              <img
+                mat-card-avatar
+                src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+              />
+              <mat-card-title>Hiren</mat-card-title>
+            </mat-card-header>
+            <mat-card-actions>
+              <!-- <button mat-button>Profile</button> -->
+              <button
+                mat-button
+                (click)="
+                  logoutClick(); mainSideMenu.close(); mainSideMenu.open()
+                "
+              >
+                Logout
+              </button>
+            </mat-card-actions>
+          </mat-card>
           <a
             mat-list-item
-            routerLink="/category"
-            (click)="mainSideMenu.close()"
+            *ngIf="!authService.isAuthenticated()"
+            (click)="loginClick(); mainSideMenu.close(); mainSideMenu.open()"
           >
+            Login
+          </a>
+          <a mat-list-item routerLink="/category">
             Categories
           </a>
-          <a mat-list-item routerLink="/item" (click)="mainSideMenu.close()">
+          <a mat-list-item routerLink="/item">
             Items
           </a>
-          <a mat-list-item (click)="mainSideMenu.close()">Save Data</a>
-          <a mat-list-item (click)="mainSideMenu.close()">Fetch Data</a>
+          <a mat-list-item routerLink="/expenses">
+            Expenses
+          </a>
+          <!-- <a mat-list-item (click)="mainSideMenu.close()">Save Data</a>
+          <a mat-list-item (click)="mainSideMenu.close()">Fetch Data</a> -->
         </mat-nav-list>
       </mat-sidenav>
-      <mat-sidenav-content>
+
+      <mat-sidenav-content #sidenavContent>
+        <mat-toolbar color="primary" #matToolbar>
+          <button mat-icon-button (click)="mainSideMenu.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span routerLink="/" style="cursor: pointer;">{{ title }}</span>
+        </mat-toolbar>
         <router-outlet></router-outlet>
       </mat-sidenav-content>
     </mat-sidenav-container>

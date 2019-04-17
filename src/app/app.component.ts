@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { AuthService } from "./auth/auth.service";
 
 @Component({
   selector: "app-root",
@@ -6,11 +7,18 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  title = "My Test App";
+  title = "App Title";
 
-  constructor() {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {}
+
+  logoutClick() {
+    this.authService.signOutUser();
+  }
+  loginClick() {
+    this.authService.signInUser("admin", "admin");
+  }
 
   // saveAll() {
   //   this.repoService

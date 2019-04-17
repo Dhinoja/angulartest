@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 import {
   MatSelectModule,
   MatButtonToggleModule,
@@ -12,8 +12,8 @@ import {
   MatTableModule,
   MatCardModule,
   MatInputModule
-} from '@angular/material';
-import { ToCsvPipe } from './pipes/ToCsv.pipe';
+} from "@angular/material";
+import { ToCsvPipe } from "./pipes/ToCsv.pipe";
 
 const matModules = [
   MatSelectModule,
@@ -35,4 +35,4 @@ const matModules = [
   imports: [matModules],
   exports: [ToCsvPipe, matModules]
 })
-export class SharedModule { }
+export class SharedModule {}

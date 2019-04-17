@@ -1,0 +1,40 @@
+<a mat-raised-button routerLink="../add">Add New</a>
+
+<h4>List</h4>
+
+<table mat-table [dataSource]="expenses" #expListTable class="explisttable">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let expense">
+      {{ expense.expenseName }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="items">
+    <th mat-header-cell *matHeaderCellDef>Items</th>
+    <td mat-cell *matCellDef="let expense">
+      {{'a'}}
+      <!-- {{ expense.itemCategories | tocsv: ["item", "name"] }} -->
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="options" stickyEnd>
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let expense">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="EditClick(expense.expenseId)">
+          Edit
+        </button>
+        <button mat-menu-item (click)="DeleteClick(expense.expenseId)">
+          Delete
+        </button>
+      </mat-menu>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
+</table>
